@@ -50,7 +50,3 @@ nsgo -test=<path/to/test-conf-file> simulation.cc
 # Show the help guide
 nsgo -help
 ```
-
-## License
-
-`<license>`: MIT License
