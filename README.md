@@ -39,7 +39,7 @@ Examples:
 
 ```bash
 # Run a simulation with flags
-nsgo delay=<delay> bandwidth=<bandwidth> npacket=<n> pcapdir=<dir> packetsize=<size> simulation.cc
+nsgo -delay=<delay> -bandwidth=<bandwidth> -npacket=<n> -pcapdir=<dir> -packetsize=<size> simulation.cc
 
 # Run a simulation with conf file
 nsgo -conf=<path/to/conf> simulation.cc
