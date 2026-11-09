@@ -302,7 +302,7 @@ func Build() tools.Error {
 	if err := cmd.Run(); err != nil {
 		return tools.NewErrorf(tools.ErrBuildGeneral, "%s", err)
 	}
-	tr := NS3.Pcapdir + "/" + fmt.Sprintf("tcp-np%d-bn%d-d%d.tr", NS3.NPackte, NS3.Bandwidth, NS3.Delay)
+	tr := NS3.Pcapdir + "/" + fmt.Sprintf("tcp-np%d-bn%d-d%d-ps%d.tr", NS3.NPackte, NS3.Bandwidth, NS3.Delay, NS3.PacketSize)
 	msg.INFOln("Rendering charts from", tr)
 	if err := chart.Graph(tr, NS3.Pcapdir); err != nil {
 		return err
@@ -323,7 +323,7 @@ func Prepare_dir() tools.Error {
 		return tools.NewErrorf(tools.ErrBuildGeneral, "could not get absolute path: %w", err)
 	}
 	for _, test := range Testcases {
-		if err := tools.Mkdir(Testc.Path + "/" + fmt.Sprintf("%d-%d-%d", test.NPacket, test.Bandwidth, test.Delay)); err != nil {
+		if err := tools.Mkdir(Testc.Path + "/" + fmt.Sprintf("%d-%d-%d-%d", test.NPacket, test.Bandwidth, test.Delay, test.PacketSize)); err != nil {
 			return tools.NewErrorf(err.Code(), "could not create test directory: %w", err)
 		}
 	}
@@ -341,8 +341,8 @@ func Tests() tools.Error {
 		NS3.NPackte = test.NPacket
 		NS3.Bandwidth = test.Bandwidth
 		NS3.Delay = test.Delay
-		NS3.Pcapdir = Testc.Path + "/" + fmt.Sprintf("%d-%d-%d", test.NPacket, test.Bandwidth, test.Delay)
 		NS3.PacketSize = test.PacketSize
+		NS3.Pcapdir = Testc.Path + "/" + fmt.Sprintf("%d-%d-%d-%d", test.NPacket, test.Bandwidth, test.Delay, test.PacketSize)
 		if err := Build(); err != nil {
 			return err
 		}
