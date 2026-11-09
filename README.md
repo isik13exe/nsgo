@@ -50,3 +50,6 @@ nsgo -test=<path/to/test-conf-file> simulation.cc
 # Show the help guide
 nsgo -help
 ```
+## Note
+
+`<file>.cc` files must be put in the scratch directory of ns-3.
